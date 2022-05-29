@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package blogpb;
+
+message Blog {
+    int32 id = 1;
+    string author = 2;
+    string content = 3;
+}
+
+message CreateBlogRequest {
+    string author = 1;
+    string content = 2;
+}
+
+message CreateBlogResponse {
+  Blog blog = 1;
+}
+
+message UpdateBlogRequest {
+    Blog blog = 1;
+}
+
+message UpdateBlogResponse {
+  Blog blog = 1;
+}
+
+message DeleteBlogRequest {
+    int32 id = 1;
+}
+
+message DeleteBlogResponse {
+  Blog blog = 1;
+}
+
+message GetBlogRequest {
+    int32 id = 1;
+}
+
+message GetBlogResponse {
+  Blog blog = 1;
+}
+
+message GetBlogsRequest {
+}
+
+message GetBlogsResponse {
+  repeated Blog blog = 1;
+}
+
+
+
+service BlogService {
+  rpc CreateBlog(CreateBlogRequest) returns (CreateBlogResponse);
+  rpc UpdateBlog(UpdateBlogRequest) returns (UpdateBlogResponse);
+  rpc DeleteBlog(DeleteBlogRequest) returns (DeleteBlogResponse);
+  rpc GetBlog(GetBlogRequest) returns (GetBlogResponse);
+  rpc GetBlogs(GetBlogsRequest) returns (GetBlogsResponse);
+}
